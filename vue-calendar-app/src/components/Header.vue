@@ -24,7 +24,7 @@
         year
     })
 
-    const handleClick = (direction) => dispatch({type: 'updateDate', payload: {direction}})
+    // const handleClick = (direction) => dispatch({type: 'updateDate', payload: {direction}})
 
     watch(() => state.value.date, (updateDate) => {
         const [_, month, __, year] = updatedDate.dateString.split(' ')
