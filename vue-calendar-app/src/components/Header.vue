@@ -23,6 +23,8 @@
         month: MONTHS[month],
         year
     })
+
+    const handleClick = (direction) => dispatch({type: 'updateDate', payload: {direction}})
 </script>
 <template>
     <div class="header">
