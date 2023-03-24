@@ -25,6 +25,15 @@
     })
 
     const handleClick = (direction) => dispatch({type: 'updateDate', payload: {direction}})
+
+    watch(() => state.value.date, (updateDate) => {
+        const [_, month, __, year] = updatedDate.dateString.split(' ')
+
+        current.value = {
+            month: MONTH[month],
+            year
+        }
+    })
 </script>
 <template>
     <div class="header">
