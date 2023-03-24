@@ -1,11 +1,45 @@
 <script setup>
+    import { ref, inject } from 'vue'
     import chev from '../assets/chev.svg'
+
+    const MONTHS = {
+        Jan: "January",
+        Feb: "February",
+        Mar: "March",
+        Apr: "April",
+        May: "May",
+        Jun: "June",
+        Jul: "July",
+        Aug: "August",
+        Sep: "September",
+        Okt: "Oktober",
+        Nov: "November",
+        Dec: "December"
+    }
+
+    const state = inject('store')
+    const [ _, month, _, year] = state.value.date.dateString.split(' ')
+    const current = ref ({
+        month: MONTHS[month],
+        year
+    })
+
+    // const handleClick = (direction) => dispatch({type: 'updateDate', payload: {direction}})
+
+    watch(() => state.value.date, (updateDate) => {
+        const [_, month, __, year] = updatedDate.dateString.split(' ')
+
+        current.value = {
+            month: MONTH[month],
+            year
+        }
+    })
 </script>
 <template>
     <div class="header">
         <div class="info">
             <div class="year">
-                <p>2023</p>
+                <p>{{ current.year }}</p>
             </div>
         </div>
         <div class="wrapper">
@@ -13,7 +47,7 @@
                 <img :src="chev" alt="left-chevron">
             </div>
             <div class="month">
-                <h2>March</h2>
+                <h2>{{ current.month }}</h2>
             </div>
             <div class="right-chev chev">
                 <img :src="chev" alt="right-chevron">
